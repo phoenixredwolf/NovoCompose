@@ -1,9 +1,18 @@
 package com.example.novocompose.data.local
 
 import android.app.Application
+import androidx.room.Dao
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.novocompose.data.local.entities.*
 
+@Database(  entities = [    Vehicle::class,
+                            Customer::class,
+                            AccelerationInsp::class,
+                            BrakeInspection::class,
+                            RepairList::class],
+            version = 1)
 abstract class MechDatabase: RoomDatabase() {
 
     companion object {
@@ -19,6 +28,4 @@ abstract class MechDatabase: RoomDatabase() {
             return database
         }
     }
-
-    abstract fun
 }
