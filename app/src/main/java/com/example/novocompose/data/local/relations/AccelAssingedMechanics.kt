@@ -8,8 +8,8 @@ import com.example.novocompose.data.local.entities.Mechanic
 data class AccelAssingedMechanics(
     @Embedded val accelInsp: AccelerationInsp,
     @Relation(
-        parentColumn = "mechanic_id",
-        entityColumn = "mechanic_id"
+        parentColumn = "mech_id",
+        entityColumn = "mech_id"
     )
     val mechanic: Mechanic
 )

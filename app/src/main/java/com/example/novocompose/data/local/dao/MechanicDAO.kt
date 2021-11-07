@@ -3,11 +3,12 @@ package com.example.novocompose.data.local.dao
 import androidx.room.*
 import com.example.novocompose.data.local.entities.Mechanic
 
+@Dao
 interface MechanicDAO {
 
     // Insert new mechanic
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertMechanic(mechanic: Mechanic): Int
+    suspend fun insertMechanic(mechanic: Mechanic): Long
 
     // Update mechanic
     @Update(onConflict = OnConflictStrategy.IGNORE)
@@ -25,7 +26,7 @@ interface MechanicDAO {
     @Delete
     suspend fun deleteMechanic(mechanic: Mechanic)
 
-    // Delete all customers
+    // Delete all mechanics
     @Query("Delete from mechanic_table")
     suspend fun deleteAllMechanics(): Unit
 }

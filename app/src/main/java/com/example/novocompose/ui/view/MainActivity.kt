@@ -1,4 +1,4 @@
-package com.example.novocompose
+package com.example.novocompose.ui.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -10,22 +10,22 @@ import com.example.novocompose.data.local.entities.RepairList
 data class MechanicsAssignedJobs(
     @Embedded val mechanic: Mechanic,
     @Relation(
-        parentColumn = "mechanic_id",
-        entityColumn = "mechanic_id"
+        parentColumn = "mech_id",
+        entityColumn = "mech_id"
     )
     val brakeInsp: List<BrakeInspection>,
     @Relation(
-        parentColumn = "mechanic_id",
-        entityColumn = "mechanic_id"
+        parentColumn = "mech_id",
+        entityColumn = "mech_id"
     )
     val accelInsp: List<AccelerationInsp>,
     @Relation(
-        parentColumn = "mechanic_id",
+        parentColumn = "mech_id",
         entityColumn = "brake_mech"
     )
     val brakeRepairs: List<RepairList>,
     @Relation(
-        parentColumn = "mechanic_id",
+        parentColumn = "mech_id",
         entityColumn = "brake_mech"
     )
     val accelRepairs: List<RepairList>

@@ -9,12 +9,12 @@ data class RepairAssignedMechanics(
     @Embedded val repairs: RepairList,
     @Relation(
         parentColumn = "brake_mech",
-        entityColumn = "mechanic_id"
+        entityColumn = "mech_id"
     )
     val brakeMech: List<Mechanic>,
     @Relation(
         parentColumn = "accel_mech",
-        entityColumn = "mechanic_id"
+        entityColumn = "mech_id"
     )
     val accelMech: List<Mechanic>
 )

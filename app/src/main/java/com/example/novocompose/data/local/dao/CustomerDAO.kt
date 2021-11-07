@@ -2,13 +2,14 @@ package com.example.novocompose.data.local.dao
 
 import androidx.room.*
 import com.example.novocompose.data.local.entities.Customer
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CustomerDAO {
 
     // Insert new customer
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertCustomer(customer: Customer): Int
+    suspend fun insertCustomer(customer: Customer): Long
 
     // Update a customer
     @Update(onConflict = OnConflictStrategy.REPLACE)
@@ -16,7 +17,7 @@ interface CustomerDAO {
 
     // Get all customers
     @Query("Select * from customer_table")
-    suspend fun getAllCustomers(): List<Customer>
+    fun getAllCustomers(): Flow<List<Customer>>
 
     // Get specific customer
     @Query("Select * from customer_table where last_name = :lastName and first_name = :firstName")

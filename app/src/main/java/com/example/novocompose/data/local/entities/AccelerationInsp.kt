@@ -6,8 +6,9 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.PrimaryKey
+import java.util.*
 
-@Entity(tableName = "accel_insp",
+@Entity(tableName = "accel_table",
         foreignKeys = [ForeignKey(  entity = Vehicle::class,
                                     parentColumns = ["vehicle_id"],
                                     childColumns = ["vehicle_id"],
@@ -18,13 +19,12 @@ import androidx.room.PrimaryKey
                                     onDelete = CASCADE)])
 data class AccelerationInsp(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "accel_id") val accelID: Int = 0,
+    @ColumnInfo(name = "accel_id") val accelID: Long,
     @ColumnInfo(name = "accel_list") val accelInsp: Boolean,
-    @ColumnInfo(name = "entry_timestamp") val accelListTime: Calendar,
-    @ColumnInfo(name = "insp_timestamp") val accelInspTime: Calendar?,
-    @ColumnInfo(name = "mech_id") val accelInspector: Int?,
+    @ColumnInfo(name = "entry_timestamp") val accelListTime: Date,
+    @ColumnInfo(name = "insp_timestamp") val accelInspTime: Date?,
+    @ColumnInfo(name = "mech_id") val accelInspector: Long?,
     @ColumnInfo(name = "accel_res") val accelResult: String?,
-    @ColumnInfo(name = "result_timestamp") val accelResTime: Calendar?,
-    @ColumnInfo(name = "vehicle_id") val vehicleID: Int
-
+    @ColumnInfo(name = "result_timestamp") val accelResTime: Date?,
+    @ColumnInfo(name = "vehicle_id") val vehicleID: Long
 )
