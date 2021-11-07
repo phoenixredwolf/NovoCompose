@@ -1,10 +1,7 @@
 package com.example.novocompose.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
 import com.example.novocompose.data.local.entities.Vehicle
 
 @Dao
@@ -16,7 +13,7 @@ interface VehicleDAO {
 
     // Get specific vehicle
     @Query("Select * From vehicle_table Where vehicleID = :vehicleID")
-    suspend fun getVehicle(vehicleID: Long): Vehicle
+    suspend fun getVehicle(vehicleID: Int): Vehicle
 
     // Delete specific vehicle
     @Delete
@@ -27,6 +24,10 @@ interface VehicleDAO {
     suspend fun deleteAllVehicles(): Unit
 
     // Insert new vehicle
-    @Insert(onConflict = REPLACE)
-    suspend fun insertVehicle(vararg vehicle: Vehicle)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertVehicle(vehicle: Vehicle): Int
+
+    // Update vehicle
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateVehicle(vehicle: Vehicle)
 }

@@ -8,11 +8,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "customer_table",
         foreignKeys = [ForeignKey(  entity = Vehicle::class,
-                                    parentColumns = ["vehicleID"],
+                                    parentColumns = ["vehicle_id"],
                                     childColumns = ["vehicle_id"],
                                     onDelete = CASCADE)])
 data class Customer(
-    @PrimaryKey(autoGenerate = true) val customer_id: Long,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "customer_id") val customerID: Int = 0,
     @ColumnInfo(name = "last_name") val lastName: String,
     @ColumnInfo(name = "first_name") val firstName: String,
     @ColumnInfo(name = "street_addr") val streetAddr: String,
@@ -20,5 +21,5 @@ data class Customer(
     @ColumnInfo(name = "state") val state: String,
     @ColumnInfo(name = "zip_code") val zipCode: String,
     @ColumnInfo(name = "phone") val phoneNumber: Number,
-    @ColumnInfo(name = "vehicle_id") val vehicle_id: Long
+    @ColumnInfo(name = "vehicle_id") val vehicleID: Int
 )

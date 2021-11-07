@@ -6,7 +6,15 @@ import com.example.novocompose.data.local.entities.Customer
 @Dao
 interface CustomerDAO {
 
-    // Get all
+    // Insert new customer
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertCustomer(customer: Customer): Int
+
+    // Update a customer
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateCustomer(customer: Customer)
+
+    // Get all customers
     @Query("Select * from customer_table")
     suspend fun getAllCustomers(): List<Customer>
 
@@ -21,8 +29,4 @@ interface CustomerDAO {
     // Delete all customers
     @Query("Delete from customer_table")
     suspend fun deleteAllCustomers(): Unit
-
-    // Insert new customer
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertNewCustomer(vararg customer: Customer)
 }

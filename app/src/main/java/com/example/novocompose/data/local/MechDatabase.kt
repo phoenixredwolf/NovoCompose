@@ -1,11 +1,10 @@
 package com.example.novocompose.data.local
 
 import android.app.Application
-import androidx.room.Dao
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.example.novocompose.data.local.dao.*
 import com.example.novocompose.data.local.entities.*
+import com.example.novocompose.data.local.util.Converters
 
 @Database(  entities = [    Vehicle::class,
                             Customer::class,
@@ -13,6 +12,7 @@ import com.example.novocompose.data.local.entities.*
                             BrakeInspection::class,
                             RepairList::class],
             version = 1)
+@TypeConverters(Converters::class)
 abstract class MechDatabase: RoomDatabase() {
 
     companion object {
@@ -28,4 +28,11 @@ abstract class MechDatabase: RoomDatabase() {
             return database
         }
     }
+
+    abstract fun customerDao(): CustomerDAO
+    abstract fun inspectionsDao(): InspectionsDAO
+    abstract fun mechanicDao(): MechanicDAO
+    abstract fun repairDao(): RepairDAO
+    abstract fun vehicleDao(): VehicleDAO
+
 }
